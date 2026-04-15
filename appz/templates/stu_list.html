@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: #f4f6f9;
+        }
+
+        /* HEADER */
+        .header {
+            background: linear-gradient(135deg, #2196F3, #1565C0);
+            color: white;
+            text-align: center;
+            padding: 18px;
+            font-size: 22px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        /* CONTAINER */
+        .container {
+            width: 90%;
+            margin: 30px auto;
+        }
+
+        /* ADD BUTTON */
+        .add-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background: linear-gradient(135deg, #4CAF50, #2e7d32);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: 500;
+            margin-bottom: 15px;
+            transition: 0.3s;
+        }
+
+        .add-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        th {
+            background: #1565C0;
+            color: white;
+            padding: 12px;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        td {
+            padding: 12px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+
+        tr:hover {
+            background: #f1f7ff;
+        }
+
+        /* ACTION BUTTONS */
+        .btn {
+            padding: 6px 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 13px;
+            color: white;
+            transition: 0.3s;
+        }
+
+        .update-btn {
+            background: #ff9800;
+        }
+
+        .update-btn:hover {
+            background: #e68900;
+        }
+
+        .delete-btn {
+            background: #e53935;
+        }
+
+        .delete-btn:hover {
+            background: #c62828;
+        }
+
+    </style>
+</head>
+<body>
+    <h2>Student List</h2>
+    <a href="{% url 'stu_create' %}">Add Student</a>
+
+    <table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Course</th>
+        <th>Update</th>
+        <th>Delete</th>
+    </tr>
+
+    {% for x in stu %}
+    <tr>
+        <td>{{ x.name }}</td>
+        <td>{{ x.email }}</td>
+        <td>{{ x.course }}</td>
+       <td><a href="{% url 'stu_update' x.id %}">Update</a></td> 
+        <td><a href="{% url 'stu_delete' x.id %}">Delete</a></td>
+    </tr>
+    {% endfor %}
+    
+    </table>
+</body>
+</html>
